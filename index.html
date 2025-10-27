@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bubble Lab: Protein Scoop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="header">
+        <div class="brand">
+          <div class="logo">🫧</div>
+          <div class="title">Bubble Lab</div>
+        </div>
+        <div class="spacer"></div>
+        <button id="btn-howto" class="pill">How to Play</button>
+      </div>
+
+      <!-- Screen 1: Costume Selection -->
+      <section id="screen-costume" class="screen active">
+        <div class="panel">
+          <h1>Pick a Bubble Costume</h1>
+          <p class="subtitle">Dress your bubble with molecular outfits to scoop proteins!</p>
+          <div id="costume-list" class="costume-list">
+            <!-- Populated by JS -->
+          </div>
+          <div class="actions">
+            <button id="btn-start" class="cta" disabled>Start Scooping</button>
+          </div>
+        </div>
+        <div class="preview">
+          <canvas id="preview-canvas" width="320" height="320" aria-label="Bubble Preview"></canvas>
+        </div>
+      </section>
+
+      <!-- Screen 2: Gameplay -->
+      <section id="screen-game" class="screen">
+        <div class="hud">
+          <div class="hud-left">
+            <div class="clock"><span id="timer">01:00</span></div>
+            <div class="counter">Proteins: <span id="count">0</span></div>
+          </div>
+          <div class="hud-center">
+            <div class="zoom-controls">
+              <button id="zoom-out" class="pill" aria-label="Zoom out">-</button>
+              <span id="zoom-level">100%</span>
+              <button id="zoom-in" class="pill" aria-label="Zoom in">+</button>
+            </div>
+          </div>
+          <div class="hud-right">
+            <button id="btn-restart" class="pill">Restart</button>
+          </div>
+        </div>
+        <div id="game-wrap">
+          <canvas id="game-canvas" width="960" height="640" aria-label="Bubble Lab game area"></canvas>
+          <div id="drop-zone-label">Drop Zone</div>
+
+          <div id="scientist" class="scientist neutral" aria-hidden="true">
+            <div class="tube">🧪</div>
+            <div class="face">🙂</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Screen 3: Results -->
+      <section id="screen-results" class="screen">
+        <div class="panel results">
+          <h1>Your Score</h1>
+          <div class="scoreline">
+            <div>Proteins collected</div>
+            <div class="big"><span id="final-score">0</span></div>
+          </div>
+          <div class="scoreline">
+            <div>Detection threshold</div>
+            <div class="big"><span id="threshold">0</span></div>
+          </div>
+          <div id="result-message" class="result-message">Great job!</div>
+          <div id="result-scientist" class="result-scientist">
+            <div id="result-scientist-face" class="face">🙂</div>
+          </div>
+          <div class="actions">
+            <button id="btn-play-again" class="cta">Play Again</button>
+            <button id="btn-change-costume" class="pill">Change Costume</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="modal-howto" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="howto-title">
+      <div class="modal-card">
+        <h2 id="howto-title">How to Play</h2>
+        <ol>
+          <li><b>Pick a costume:</b> Choose molecule length and head to dress your bubble.</li>
+          <li><b>Scoop proteins:</b> Drag the bubble through the tube to gather proteins and bring them to the <b>Drop Zone</b> at the top. Use <b>Zoom</b> to explore.</li>
+          <li><b>Beat the clock:</b> You have 60 seconds. Collect more than the threshold to make the scientist happy!</li>
+        </ol>
+        <div class="actions">
+          <button id="btn-close-howto" class="cta">Got it</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./game.js"></script>
+  </body>
+</html>
